@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MutualFund</title>
+    <style>
+        table,th,td{
+            border-collapse: collapse;
+            padding: 0.7rem;
+            border:1px solid black;
+        }
+        fieldset{
+            width: 20%;
+        }
+        input{
+            padding: .5rem;
+        }
+        form{
+            text-align: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <form method="post">
+        <fieldset>
+        <legend>Mutual Fund form</legend>
+        <input id="name" type="text" placeholder="name"  name="name"><br><br>
+        <input id="fundcode" type="number" placeholder="Fund code" name="fundcode"><br><br>
+        <input id="investedamount" type="number" placeholder="Invested amount" name="investedamount"><br><br>
+        <input id="unitheld" type="number" placeholder="Unit held" name="unitheld"><br><br>
+        <input type="submit" value="submit"><br><br>  
+        </fieldset>  
+    </form>
+
+        <table>
+            <tr>
+                <th>S.NO</th>
+                <th>NAME</th>
+                <th>FUNDHOUSE</th>
+                <th>INVESTED AMOUNT</th>
+                <th>UNIT HELD</th>
+                <th>NAV</th>
+                <th>CURRENT VALUE</th>
+                <th>GROWTH</th>
+                <th colspan="2">ACTION</th>
+            </tr>
+            {%for i in detail%}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{i.name}}</td>
+                <td>{{i.fund_house}}</td>
+                <td>{{i.invested_amount}}</td>
+                <td>{{i.unitheld}}</td>
+                <td>{{i.nav}}</td>
+                <td>{{i.currentvalue}}</td>
+                <td>{{i.growth}}</td>
+                <td><a href="{{url_for('edit',a=loop.index)}}">edit</a></td>
+                <td><a href="{{url_for('delete',a=loop.index)}}">delete</a></td>
+                
+            </tr>
+            {%endfor%}
+        </table>
+
+
+</body>
+</html>
